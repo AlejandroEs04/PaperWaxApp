@@ -1,74 +1,114 @@
-import { Image, StyleSheet, Platform } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native'
+import React from 'react'
+import ThemedView from '@/components/ThemedView'
+import ThemedText from '@/components/ThemedText'
+import { useThemeColor } from '@/hooks/useThemeColor'
+import { Colors } from '@/constants/Colors'
+import ThemedButton from '@/components/ThemedButton'
+import ContainerList from '@/components/ContainerList'
 
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
+export default function home() {
+    const appTitleColor = useThemeColor({ light: Colors.light.primary, dark: Colors.dark.primary }, 'text')
+    const containerItem = useThemeColor({ light: Colors.light.container, dark: Colors.dark.container }, 'container')
 
-export default function HomeScreen() {
-  return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12'
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          Tap the Explore tab to learn more about what's included in this starter app.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          When you're ready, run{' '}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
-  );
+    return (
+        <ThemedView style={{ paddingTop: 0 }}>
+            <ScrollView>
+                <View style={{ paddingHorizontal: 12 }}>
+                    <Text style={[{ color: appTitleColor }, styles.appTitle]}>PaperWax App</Text>
+
+                    <ThemedText type='title' style={{ marginTop: 10 }}>Procesos</ThemedText>
+                    <ThemedText>Gestiona los procesos activos o pendientes</ThemedText>
+
+                    <ThemedButton 
+                        title='Iniciar Proceso'
+                        onPress={() => console.log('Creando')}
+                        styles={{
+                            marginTop: 10
+                        }}
+                    />
+                </View>
+
+                <ContainerList>
+                    <ContainerList.Item>
+                        <View style={{ gap: 10, width: '50%' }}>
+                            <View>
+                                <ThemedText>Producto: </ThemedText>
+                                <ThemedText style={{ fontWeight: 800 }}>Chasa 500gr</ThemedText>
+                            </View>
+                            <View>
+                                <ThemedText>Rollo: </ThemedText>
+                                <ThemedText style={{ fontWeight: 800 }}>ADEBGG182101</ThemedText>
+                            </View>
+                        </View>
+
+                        <View style={{ width: '50%', alignItems: 'flex-end' }}>
+                            <View>
+                                <ThemedText style={{ textAlign: 'right' }}>Status: <ThemedText style={{ color: '#ef4444', fontWeight: 800 }}>Pending</ThemedText></ThemedText>
+                                
+                            </View>
+                        </View>
+                    </ContainerList.Item>
+                    
+                    <ContainerList.Item>
+                        <View style={{ gap: 10, width: '50%' }}>
+                            <View>
+                                <ThemedText>Producto: </ThemedText>
+                                <ThemedText style={{ fontWeight: 800 }}>Chasa 500gr</ThemedText>
+                            </View>
+                            <View>
+                                <ThemedText>Rollo: </ThemedText>
+                                <ThemedText style={{ fontWeight: 800 }}>ADEBGG182101</ThemedText>
+                            </View>
+                        </View>
+
+                        <View style={{ width: '50%', alignItems: 'flex-end' }}>
+                            <View>
+                                <ThemedText style={{ textAlign: 'right' }}>Status: <ThemedText style={{ color: '#ef4444', fontWeight: 800 }}>Pending</ThemedText></ThemedText>
+                                
+                            </View>
+                        </View>
+                    </ContainerList.Item>
+                    
+                    <ContainerList.Item>
+                        <View style={{ gap: 10, width: '50%' }}>
+                            <View>
+                                <ThemedText>Producto: </ThemedText>
+                                <ThemedText style={{ fontWeight: 800 }}>Chasa 500gr</ThemedText>
+                            </View>
+                            <View>
+                                <ThemedText>Rollo: </ThemedText>
+                                <ThemedText style={{ fontWeight: 800 }}>ADEBGG182101</ThemedText>
+                            </View>
+                        </View>
+
+                        <View style={{ width: '50%', alignItems: 'flex-end' }}>
+                            <View>
+                                <ThemedText style={{ textAlign: 'right' }}>Status: <ThemedText style={{ color: '#fb923c', fontWeight: 900 }}>In progress</ThemedText></ThemedText>
+                                
+                            </View>
+                        </View>
+                    </ContainerList.Item>
+                </ContainerList>
+            </ScrollView>
+        </ThemedView>
+    )
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-  },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
-  },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
-  },
-});
+    appTitle: {
+        fontSize: 40, 
+        fontWeight: 900
+    }, 
+    listContainer: {
+        paddingHorizontal: 12, 
+        marginTop: 18, 
+        gap: 8
+    }, 
+    listItem: {
+        paddingHorizontal: 12, 
+        paddingVertical: 12, 
+        flexDirection: 'row',
+        borderRadius: 10
+    }
+})
